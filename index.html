@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Celebrating Benny & Ses Amis</title>
-    <!-- Pastel script font for elegance -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --pastel-blue: #b8e0ea;
-            --pastel-aqua: #d6f5f2;
-            --pastel-pink: #f7d6e0;
-            --pastel-peach: #ffe5d0;
-            --pastel-lavender: #e6e6fa;
-            --pastel-yellow: #fff7d6;
-            --pastel-sand: #f9f6f2;
-            --text-main: #2d3a4a; /* Much darker for readability */
-            --text-accent: #4b2e4a; /* Dark accent */
-            --bg-main: #fff; /* Clear white background */
-        }
+:root {
+    --pastel-blue: #b8e0ea;      /* Soft sea blue */
+    --pastel-aqua: #aee6e6;      /* Light aqua */
+    --pastel-pink: #f7d6e0;      /* Blush pink */
+    --pastel-peach: #ffe5d0;     /* Peachy sunset */
+    --pastel-lavender: #e6e6fa;  /* Gentle lavender */
+    --pastel-yellow: #fff7d6;    /* Light yellow */
+    --pastel-mint: #d6f5e6;      /* Mint green */
+    --pastel-coral: #ffd6d6;     /* Soft coral */
+    --pastel-sand: #f9f6f2;      /* Beach sand */
+    --pastel-rose: #f8e1f4;      /* Rose pink */
+    --text-main: #2d3a4a;        /* Deep blue for text */
+    --text-accent: #4b2e4a;      /* Plum accent */
+    --bg-main: linear-gradient(135deg, #e4f6f9 0%, #fff4e5 100%); /* Sea to sunset gradient */
+}
         * {
             margin: 0;
             padding: 0;
@@ -30,18 +32,17 @@
             color: var(--text-main);
             overflow-x: hidden;
         }
-        .bg-animation {
-            display: none; /* Remove pastel overlay for clarity */
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.98);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(44,42,74,0.08);
-            min-height: 100vh;
-            padding-bottom: 40px;
-        }
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(184,224,234,0.5); /* semi-transparent pastel blue */
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(44,42,74,0.08);
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
         .hero {
             min-height: 60vh;
             display: flex;
@@ -61,7 +62,7 @@
             pointer-events: none;
         }
         .floating-hearts .heart {
-            color: var(--pastel-pink);
+            color: #ff2a2a; /* bright red */
             font-size: 28px;
             position: absolute;
             opacity: 0.5;
@@ -118,44 +119,85 @@
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
-        .wave {
-            display: block;
-            width: 100%;
-            height: 60px;
-            margin-bottom: -4px;
-        }
+
+        /* Photo Scroll Section */
         .photo-scroll-section {
-            background: var(--bg-main);
-            position: relative;
+            width: 100%;
             overflow: hidden;
-            padding: 0;
+            background: var(--bg-main);
+            padding: 40px 0;
+            position: relative;
         }
+        
         .photo-marquee {
-            display: flex;
-            animation: scroll 24s linear infinite;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+            position: relative;
+            cursor: grab;
+            user-select: none;
         }
+        
+        .photo-marquee:active {
+            cursor: grabbing;
+        }
+        
+        .photo-track {
+            display: flex;
+            gap: 12px;
+            width: fit-content;
+            animation: scroll-photos 60s linear infinite;
+        }
+        
+        .photo-track.paused {
+            animation-play-state: paused;
+        }
+        
+        .photo-track.manual {
+            animation: none;
+        }
+        
         .photo-item {
-            min-width: 220px;
+            width: 220px;
             height: 140px;
-            margin: 0 10px;
-            border-radius: 18px;
+            flex: 0 0 auto;
             background: var(--pastel-blue);
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 16px rgba(44,42,74,0.09);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
             color: var(--text-accent);
             font-style: italic;
             text-align: center;
-            box-shadow: 0 4px 16px rgba(44,42,74,0.09);
             font-size: 1.1em;
-            transition: transform 0.3s ease;
         }
+        
         .photo-item:hover {
-            transform: scale(1.07) rotate(2deg);
+            transform: scale(1.05) rotate(1deg);
         }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        
+        @keyframes scroll-photos {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-220px * 10 - 12px * 9));
+            }
+        }
+
+        .content-section {
+            background: var(--pastel-sand);
+        }
+        .section-title {
+            font-size: 2.2em;
+            color: var(--text-accent);
+            text-align: center;
+            margin-bottom: 32px;
+            font-weight: 300;
         }
         .welcome-card {
             background: var(--pastel-peach);
@@ -327,6 +369,18 @@
             .timeline-content { width: 100%; }
             .timeline-item { flex-direction: column !important; }
             .content-section { padding: 24px 8px; }
+            .photo-item {
+                width: 70vw;
+                height: 30vh;
+            }
+            @keyframes scroll-photos {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-70vw * 10 - 12px * 9));
+                }
+            }
         }
     </style>
 </head>
@@ -349,140 +403,14 @@
             <div class="wedding-info">December 20, 2025 • Máncora, Peru</div>
             <div class="scroll-indicator">↓</div>
         </section>
-<section class="photo-scroll-section">
-    <div class="photo-marquee" id="photoMarquee">
-        <!-- Repeat this block for each photo (up to 30) -->
-        <div class="photo-item">
-            <img src="photo1.jpg" alt="Photo 1" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
-        </div>
-        <div class="photo-item">
-            <img src="photo1.jpg" alt="Photo 2" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
-        </div>
-        <div class="photo-item">
-            <img src="photo1.jpg" alt="Photo 3" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
-        </div>
-        <!-- ...add more photo-item blocks up to photo30.jpg... -->
-    </div>
-</section>
-<style>
-.photo-scroll-section {
-    width: 100%;
-    overflow: hidden;
-    background: var(--bg-main);
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-.photo-marquee {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-    scrollbar-width: none; /* Firefox */
-    align-items: center;
-}
-.photo-marquee::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-}
-.photo-item {
-    min-width: 220px;
-    height: 140px;
-    flex: 0 0 auto;
-    background: var(--pastel-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(44,42,74,0.09);
-    border-radius: 16px;
-}
-@media (max-width: 600px) {
-    .photo-item {
-        min-width: 70vw;
-        height: 30vw;
-    }
-}
-</style>
-<script>
-// Automatic scroll
-const marquee = document.getElementById('photoMarquee');
-let scrollSpeed = 1; // Adjust speed here
-let autoScroll;
 
-function startAutoScroll() {
-    autoScroll = setInterval(() => {
-        marquee.scrollLeft += scrollSpeed;
-        if (marquee.scrollLeft + marquee.offsetWidth >= marquee.scrollWidth) {
-            marquee.scrollLeft = 0;
-        }
-    }, 20);
-}
-function stopAutoScroll() {
-    clearInterval(autoScroll);
-}
-startAutoScroll();
-
-// Pause auto-scroll on mouse/touch interaction
-marquee.addEventListener('mouseenter', stopAutoScroll);
-marquee.addEventListener('mouseleave', startAutoScroll);
-marquee.addEventListener('touchstart', stopAutoScroll);
-marquee.addEventListener('touchend', startAutoScroll);
-
-// Mouse wheel horizontal scroll
-marquee.addEventListener('wheel', function(e) {
-    if (e.deltaY !== 0) {
-        e.preventDefault();
-        marquee.scrollLeft += e.deltaY;
-    }
-});
-
-// Drag-to-scroll for desktop and touch devices
-let isDown = false;
-let startX;
-let scrollLeftPos;
-
-marquee.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - marquee.offsetLeft;
-    scrollLeftPos = marquee.scrollLeft;
-    stopAutoScroll();
-});
-marquee.addEventListener('mouseleave', () => {
-    isDown = false;
-    startAutoScroll();
-});
-marquee.addEventListener('mouseup', () => {
-    isDown = false;
-    startAutoScroll();
-});
-marquee.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - marquee.offsetLeft;
-    const walk = (x - startX) * 2;
-    marquee.scrollLeft = scrollLeftPos - walk;
-});
-
-// Mobile touch drag
-marquee.addEventListener('touchstart', (e) => {
-    isDown = true;
-    startX = e.touches[0].pageX - marquee.offsetLeft;
-    scrollLeftPos = marquee.scrollLeft;
-    stopAutoScroll();
-});
-marquee.addEventListener('touchend', () => {
-    isDown = false;
-    startAutoScroll();
-});
-marquee.addEventListener('touchmove', (e) => {
-    if (!isDown) return;
-    const x = e.touches[0].pageX - marquee.offsetLeft;
-    const walk = (x - startX) * 2;
-    marquee.scrollLeft = scrollLeftPos - walk;
-});
-</script>
-
-
+        <section class="photo-scroll-section">
+            <div class="photo-marquee" id="photoMarquee">
+                <div class="photo-track" id="photoTrack">
+                    <!-- Photos will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
 
         <section class="content-section">
             <div class="welcome-card">
@@ -494,17 +422,18 @@ marquee.addEventListener('touchmove', (e) => {
                 <p class="signature">Peace out,<br>Your Friends</p>
             </div>
         </section>
+
         <section class="content-section">
             <h2 class="section-title">Lots of time spent with you, bitch</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-date">2015 - How We Met</div>
-                        <h3 class="timeline-title">The Beginning </h3>
-                        <div class="timeline-photo">
-                            <img src="photo1.jpg" alt="Photo of when you first met Benny">
-                        </div>
-                        <p>You so fancy.</p>
+                <h3 class="timeline-title">The Beginning </h3>
+                <div class="timeline-photo">
+                    <img src="photo1.JPG" alt="Photo of when you first met Benny">
+                </div>
+                <p>You so fancy.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -539,30 +468,19 @@ marquee.addEventListener('touchmove', (e) => {
                 </div>
             </div>
         </section>
+
         <section class="content-section">
             <h2 class="section-title">Photo Memories</h2>
             <div class="gallery">
-<div class="gallery-item">
-    <img src="photo1.jpg" alt="Photo" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-</div>
-<div class="gallery-item">
-    <img src="photo1.jpg" alt="Photo" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-</div>
-<div class="gallery-item">
-    <img src="photo1.jpg" alt="Photo" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-</div>
-<div class="gallery-item">
-    <img src="photo1.jpg" alt="Photo" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-</div>
-<div class="gallery-item">
-    <img src="photo1.jpg" alt="Photo" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-</div>
-<div class="gallery-item">
-    <img src="photo1.jpg" alt="Photo" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-</div>
-
+                <div class="gallery-item">Photo Memory 1</div>
+                <div class="gallery-item">Photo Memory 2</div>
+                <div class="gallery-item">Photo Memory 3</div>
+                <div class="gallery-item">Photo Memory 4</div>
+                <div class="gallery-item">Photo Memory 5</div>
+                <div class="gallery-item">Photo Memory 6</div>
             </div>
         </section>
+
         <section class="wishes-section">
             <h2 class="section-title" style="color: var(--text-accent);">Wedding Wishes</h2>
             <p class="wishes-text">
@@ -571,6 +489,7 @@ marquee.addEventListener('touchmove', (e) => {
                 These pictures from the team are but a glimpse of the beautiful moments we've shared, and we can't wait to create even more memories with you both.<br><br>
             </p>
         </section>
+
         <footer class="footer">
             <p class="footer-quote">
                 "A good friend knows all your stories.<br>
@@ -579,24 +498,246 @@ marquee.addEventListener('touchmove', (e) => {
             </p>
         </footer>
     </div>
+
     <script>
+        class PhotoScroll {
+            constructor() {
+                this.marquee = document.getElementById('photoMarquee');
+                this.track = document.getElementById('photoTrack');
+                this.currentTransform = 0;
+                this.isDragging = false;
+                this.startX = 0;
+                this.startTransform = 0;
+                this.animationPaused = false;
+                this.resumeTimeout = null;
+                
+                // Touch support
+                this.touchStartTime = 0;
+                this.touchStartX = 0;
+                this.velocity = 0;
+                this.isFlicking = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.createPhotos();
+                this.setupEventListeners();
+            }
+            
+            createPhotos() {
+    const photoFiles = [
+        'photo1.jpg',
+        'photo1.jpg',
+        'photo1.jpg',
+        // Add more photo filenames as needed
+    ];
+    
+    // Create exactly 2 sets for seamless loop
+    for (let copy = 0; copy < 2; copy++) {
+        photoFiles.forEach((file, index) => {
+            const photoItem = document.createElement('div');
+            photoItem.className = 'photo-item';
+            // Create an image element
+            const img = document.createElement('img');
+            img.src = file;
+            img.alt = `Photo ${index + 1}`;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '16px';
+            photoItem.appendChild(img);
+            this.track.appendChild(photoItem);
+        });
+                }
+            }
+            
+            setupEventListeners() {
+                // Mouse wheel
+                this.marquee.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    this.pauseAnimation();
+                    this.currentTransform -= e.deltaY * 1.5;
+                    this.updateManualTransform();
+                    this.resumeAnimationDelayed();
+                });
+                
+                // Mouse events
+                this.marquee.addEventListener('mousedown', (e) => this.handleStart(e.clientX));
+                this.marquee.addEventListener('mousemove', (e) => this.handleMove(e.clientX));
+                this.marquee.addEventListener('mouseup', () => this.handleEnd());
+                this.marquee.addEventListener('mouseleave', () => this.handleEnd());
+                
+                // Touch events
+                this.marquee.addEventListener('touchstart', (e) => {
+                    this.handleStart(e.touches[0].clientX);
+                    this.touchStartTime = Date.now();
+                    this.touchStartX = e.touches[0].clientX;
+                }, { passive: false });
+                
+                this.marquee.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    this.handleMove(e.touches[0].clientX);
+                }, { passive: false });
+                
+                this.marquee.addEventListener('touchend', (e) => {
+                    this.handleFlick(e);
+                    this.handleEnd();
+                });
+                
+                // Hover pause/resume
+                this.marquee.addEventListener('mouseenter', () => this.pauseAnimation());
+                this.marquee.addEventListener('mouseleave', () => {
+                    if (!this.isDragging) this.resumeAnimationDelayed();
+                });
+            }
+            
+            handleStart(clientX) {
+                this.isDragging = true;
+                this.startX = clientX;
+                this.startTransform = this.currentTransform;
+                this.pauseAnimation();
+                this.velocity = 0;
+                this.isFlicking = false;
+            }
+            
+            handleMove(clientX) {
+                if (!this.isDragging) return;
+                
+                const deltaX = clientX - this.startX;
+                this.currentTransform = this.startTransform + deltaX;
+                this.updateManualTransform();
+            }
+            
+            handleEnd() {
+                if (!this.isDragging) return;
+                this.isDragging = false;
+                if (!this.isFlicking) {
+                    this.resumeAnimationDelayed();
+                }
+            }
+            
+            handleFlick(e) {
+                if (!e.changedTouches) return;
+                
+                const touchEndTime = Date.now();
+                const touchEndX = e.changedTouches[0].clientX;
+                const deltaTime = touchEndTime - this.touchStartTime;
+                const deltaX = touchEndX - this.touchStartX;
+                
+                if (deltaTime < 300 && Math.abs(deltaX) > 30) {
+                    this.velocity = (deltaX / deltaTime) * 5;
+                    this.isFlicking = true;
+                    this.animateFlick();
+                }
+            }
+            
+            animateFlick() {
+                if (!this.isFlicking || Math.abs(this.velocity) < 0.5) {
+                    this.isFlicking = false;
+                    this.resumeAnimationDelayed();
+                    return;
+                }
+                
+                this.currentTransform += this.velocity;
+                this.velocity *= 0.95;
+                this.updateManualTransform();
+                
+                requestAnimationFrame(() => this.animateFlick());
+            }
+            
+            pauseAnimation() {
+                if (this.animationPaused) return;
+                
+                // Get current animation position
+                const computedStyle = getComputedStyle(this.track);
+                const matrix = computedStyle.transform;
+                if (matrix && matrix !== 'none') {
+                    const values = matrix.match(/matrix.*\((.+)\)/)[1].split(', ');
+                    const currentAnimTransform = parseFloat(values[4]) || 0;
+                    if (!this.isDragging) {
+                        this.currentTransform = currentAnimTransform;
+                    }
+                }
+                
+                this.track.classList.add('paused', 'manual');
+                this.animationPaused = true;
+                clearTimeout(this.resumeTimeout);
+                
+                this.track.style.transform = `translateX(${this.currentTransform}px)`;
+            }
+            
+            resumeAnimationDelayed() {
+                clearTimeout(this.resumeTimeout);
+                this.resumeTimeout = setTimeout(() => {
+                    this.resumeAnimation();
+                }, 1500);
+            }
+            
+            resumeAnimation() {
+                if (!this.animationPaused) return;
+                
+                // Normalize position to prevent drift
+                const singleSetWidth = 220 * 10 + 12 * 9; // 10 items * width + 9 gaps
+                
+                // Keep position within bounds
+                while (this.currentTransform > 0) {
+                    this.currentTransform -= singleSetWidth;
+                }
+                while (this.currentTransform < -singleSetWidth) {
+                    this.currentTransform += singleSetWidth;
+                }
+                
+                this.track.classList.remove('paused', 'manual');
+                
+                // Set animation delay based on current position
+                const percentage = Math.abs(this.currentTransform) / singleSetWidth;
+                this.track.style.animationDelay = `-${percentage * 45}s`;
+                
+                this.animationPaused = false;
+                this.currentTransform = 0;
+            }
+            
+            updateManualTransform() {
+                // Normalize to prevent going too far out of bounds
+                const singleSetWidth = 220 * 10 + 12 * 9;
+                
+                while (this.currentTransform > singleSetWidth) {
+                    this.currentTransform -= singleSetWidth;
+                }
+                while (this.currentTransform < -singleSetWidth * 2) {
+                    this.currentTransform += singleSetWidth;
+                }
+                
+                this.track.style.transform = `translateX(${this.currentTransform}px)`;
+            }
+        }
+        
+        // Initialize photo scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            new PhotoScroll();
+        });
+
         // Smooth scrolling for the scroll indicator
         document.querySelector('.scroll-indicator').addEventListener('click', function() {
             document.querySelector('.photo-scroll-section').scrollIntoView({
                 behavior: 'smooth'
             });
         });
+
         // Hide scroll indicator after first scroll
         window.addEventListener('scroll', function() {
             if (window.scrollY > 100) {
                 document.querySelector('.scroll-indicator').style.opacity = '0';
             }
         });
-        // Add intersection observer for timeline animations
+
+        // Timeline animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
+        
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -604,6 +745,7 @@ marquee.addEventListener('touchmove', (e) => {
                 }
             });
         }, observerOptions);
+        
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
