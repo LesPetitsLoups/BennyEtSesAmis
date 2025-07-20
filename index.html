@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrating Benny & Ses Amis</title>
+    <!-- Pastel script font for elegance -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pastel-blue: #b8e0ea;
+            --pastel-aqua: #d6f5f2;
+            --pastel-pink: #f7d6e0;
+            --pastel-peach: #ffe5d0;
+            --pastel-lavender: #e6e6fa;
+            --pastel-yellow: #fff7d6;
+            --pastel-sand: #f9f6f2;
+            --text-main: #2d3a4a; /* Much darker for readability */
+            --text-accent: #4b2e4a; /* Dark accent */
+            --bg-main: #fff; /* Clear white background */
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', 'Georgia', serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+        .bg-animation {
+            display: none; /* Remove pastel overlay for clarity */
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.98);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(44,42,74,0.08);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px 0 20px;
+            position: relative;
+            background: var(--bg-main);
+            border-radius: 0 0 40px 40px;
+        }
+        .floating-hearts {
+            position: absolute;
+            top: 20px; left: 0; width: 100%;
+            height: 60px;
+            pointer-events: none;
+        }
+        .floating-hearts .heart {
+            color: var(--pastel-pink);
+            font-size: 28px;
+            position: absolute;
+            opacity: 0.5;
+            animation: float 7s ease-in-out infinite;
+        }
+        .floating-hearts .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-hearts .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .floating-hearts .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .floating-hearts .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .floating-hearts .heart:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .floating-hearts .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .floating-hearts .heart:nth-child(7) { left: 70%; animation-delay: 2.5s; }
+        .floating-hearts .heart:nth-child(8) { left: 80%; animation-delay: 1.5s; }
+        .floating-hearts .heart:nth-child(9) { left: 90%; animation-delay: 0.5s; }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-30px) scale(1.2); opacity: 0.3; }
+            100% { transform: translateY(0) scale(1); opacity: 0.5; }
+        }
+        .main-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            color: var(--text-accent);
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px var(--pastel-peach);
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: var(--text-main);
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+        .wedding-info {
+            background: var(--pastel-yellow);
+            padding: 16px 32px;
+            border-radius: 32px;
+            border: 1px solid var(--pastel-peach);
+            font-size: 1.2em;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(44,42,74,0.07);
+        }
+        .scroll-indicator {
+            margin-top: 24px;
+            color: var(--text-accent);
+            font-size: 2em;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .wave {
+            display: block;
+            width: 100%;
+            height: 60px;
+            margin-bottom: -4px;
+        }
+        .photo-scroll-section {
+            background: var(--bg-main);
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+        .photo-marquee {
+            display: flex;
+            animation: scroll 24s linear infinite;
+        }
+        .photo-item {
+            min-width: 220px;
+            height: 140px;
+            margin: 0 10px;
+            border-radius: 18px;
+            background: var(--pastel-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-accent);
+            font-style: italic;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(44,42,74,0.09);
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+        .photo-item:hover {
+            transform: scale(1.07) rotate(2deg);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .welcome-card {
+            background: var(--pastel-peach);
+            color: var(--text-main);
+            padding: 40px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 6px 24px rgba(44,42,74,0.07);
+            margin: 32px 0;
+        }
+        .welcome-text {
+            font-size: 1.2em;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .signature {
+            font-size: 1.1em;
+            font-style: italic;
+            border-top: 1px solid var(--pastel-blue);
+            padding-top: 16px;
+            margin-top: 24px;
+        }
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--pastel-blue);
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+        .timeline-item {
+            display: flex;
+            margin: 40px 0;
+            opacity: 0;
+            animation: slideIn 1s ease-out forwards;
+            background: var(--pastel-sand);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44,42,74,0.06);
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            animation-delay: 0.2s;
+        }
+        .timeline-item:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline-content {
+            width: 50%;
+            background: transparent;
+            padding: 24px;
+            border-radius: 14px;
+            position: relative;
+        }
+        .timeline-date {
+            color: var(--text-accent);
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .timeline-title {
+            color: var(--text-main);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .timeline-photo {
+            width: 100%;
+            height: 160px;
+            background: var(--pastel-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-style: italic;
+            margin: 10px 0 18px 0;
+            border: 1px dashed var(--pastel-blue);
+            overflow: hidden;
+        }
+        .timeline-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            opacity: 0.95;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .gallery-item {
+            aspect-ratio: 1;
+            background: var(--pastel-blue);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-accent);
+            font-style: italic;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(44,42,74,0.07);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .gallery-item:hover {
+            transform: scale(1.04) rotate(1deg);
+            box-shadow: 0 8px 24px rgba(44,42,74,0.13);
+        }
+        .wishes-section {
+            background: var(--pastel-peach);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            border-radius: 24px;
+            margin-top: 40px;
+        }
+        .wishes-section::before {
+            content: '♥';
+            position: absolute;
+            font-size: 120px;
+            color: var(--pastel-pink);
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.08;
+            pointer-events: none;
+        }
+        .wishes-text {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--pastel-blue);
+            color: var(--text-accent);
+            border-radius: 0 0 24px 24px;
+        }
+        .footer-quote {
+            font-size: 1.1em;
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.2em; }
+            .container { border-radius: 0; }
+            .hero { border-radius: 0 0 24px 24px; }
+            .timeline-content { width: 100%; }
+            .timeline-item { flex-direction: column !important; }
+            .content-section { padding: 24px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <div class="floating-hearts">
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+                <div class="heart">♥</div>
+            </div>
+            <h1 class="main-title">Benny & Ses Amis</h1>
+            <p class="subtitle">A Celebration of Love & Friendship</p>
+            <div class="wedding-info">December 20, 2025 • Máncora, Peru</div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+        <section class="photo-scroll-section">
+            <div class="photo-marquee">
+                <div class="photo-item">College Days Memory</div>
+                <div class="photo-item">Epic Road Trip 2019</div>
+                <div class="photo-item">Late Night Adventures</div>
+                <div class="photo-item">Beach Hangouts</div>
+                <div class="photo-item">Birthday Celebrations</div>
+                <div class="photo-item">Random Tuesday Fun</div>
+                <div class="photo-item">Concert Madness</div>
+                <div class="photo-item">Friendship Goals</div>
+                <div class="photo-item">College Days Memory</div>
+                <div class="photo-item">Epic Road Trip 2019</div>
+                <div class="photo-item">Late Night Adventures</div>
+                <div class="photo-item">Beach Hangouts</div>
+                <div class="photo-item">Birthday Celebrations</div>
+                <div class="photo-item">Random Tuesday Fun</div>
+                <div class="photo-item">Concert Madness</div>
+                <div class="photo-item">Friendship Goals</div>
+            </div>
+        </section>
+        <section class="content-section">
+            <div class="welcome-card">
+                <p class="welcome-text">
+                    Dear Benny,<br><br>
+                    As you embark on this beautiful journey of marriage, I want you to know how grateful I am to have witnessed your love story unfold. From late-night conversations to countless adventures, we've shared so much together.<br><br>
+                    Today, as you say "I do," know that your friendship has been one of the greatest gifts in my life, and I couldn't be happier to celebrate this magical moment with you in beautiful Máncora.
+                </p>
+                <p class="signature">With love and endless joy,<br>Keke El Makeke</p>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title">Our Journey Together</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015 - How We Met</div>
+                        <h3 class="timeline-title">The Beginning of Our Epic Friendship</h3>
+                        <div class="timeline-photo">
+                            <img src="photo1.jpg" alt="Photo of when you first met Benny">
+                        </div>
+                        <p>Remember that random Tuesday when we somehow ended up talking for 6 hours straight? I knew right then that this friendship was going to be legendary. From day one, your infectious laugh and terrible dad jokes had me hooked.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2017 - The Great Adventure</div>
+                        <h3 class="timeline-title">That Trip We'll Never Forget</h3>
+                        <div class="timeline-photo">
+                            <span>Photo from your most epic trip together</span>
+                        </div>
+                        <p>Who else would agree to a spontaneous 12-hour road trip with just a playlist and way too much coffee? That weekend taught me that the best adventures aren't planned - they're lived with the right people.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019 - Through Thick and Thin</div>
+                        <h3 class="timeline-title">Always There for Each Other</h3>
+                        <div class="timeline-photo">
+                            <span>Photo representing support/tough times</span>
+                        </div>
+                        <p>When life got complicated, you were there with terrible movies, good food, and the kind of friendship that doesn't need words. Thanks for proving that the best friendships aren't just about the fun times.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - Love Enters</div>
+                        <h3 class="timeline-title">When You Met Your Perfect Match</h3>
+                        <div class="timeline-photo">
+                            <span>Photo of first time meeting Ses Amis or the three of you</span>
+                        </div>
+                        <p>The moment you started talking about Ses Amis, I knew something had changed. You had that goofy smile that meant serious business. Watching your love story unfold has been pure magic.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title">Photo Memories</h2>
+            <div class="gallery">
+                <div class="gallery-item">Epic Beach Day<br>Summer 2018</div>
+                <div class="gallery-item">Concert Chaos<br>That Amazing Show</div>
+                <div class="gallery-item">Late Night Diner<br>3AM Conversations</div>
+                <div class="gallery-item">Birthday Surprise<br>You'll Never Forget</div>
+                <div class="gallery-item">Random Adventures<br>Just Because</div>
+                <div class="gallery-item">The Three Amigos<br>First Meeting</div>
+            </div>
+        </section>
+        <section class="wishes-section">
+            <h2 class="section-title" style="color: var(--text-accent);">Wedding Wishes</h2>
+            <p class="wishes-text">
+                Benny and Ses Amis,<br><br>
+                May your love story continue to unfold with the same joy, laughter, and adventure that has always defined who you are, Benny. May you find in each other not just a spouse, but a best friend, a partner in crime, and a companion for all of life's beautiful moments.<br><br>
+                Here's to a lifetime of inside jokes, shared dreams, and love that grows stronger with each passing day in your little corner of paradise.
+            </p>
+        </section>
+        <footer class="footer">
+            <p class="footer-quote">
+                "A good friend knows all your stories.<br>
+                A best friend helped you write them."<br><br>
+                Cheers to writing the most beautiful chapter yet in Máncora! ♥
+            </p>
+        </footer>
+    </div>
+    <script>
+        // Smooth scrolling for the scroll indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.querySelector('.photo-scroll-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        // Hide scroll indicator after first scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                document.querySelector('.scroll-indicator').style.opacity = '0';
+            }
+        });
+        // Add intersection observer for timeline animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
